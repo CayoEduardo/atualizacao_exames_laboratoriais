@@ -61,7 +61,7 @@
     }
 
     public function adicionarAmostra($amostraColetada) {
-
+      $this->amostra = $amostraColetada;
     }
 
     public function validarExame() {

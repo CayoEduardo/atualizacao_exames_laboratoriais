@@ -1,29 +1,9 @@
 <?php
-    include_once(__DIR__.'/Database.class.php');
-        // private $numeroExame;
-        // private $status;
-        // private $resultado;
-        // private $amostra;
-        // private $analistaResponsavel;
-        // private $supervisorResponsavel;
-        // private $justificativaNovaSolicitacao;
-
-        // public function getNumeroExame();
-        // public function getStatus();
-        // public function getResultado();
-        // public function setResultado($resultadoExame);
-        // public function getAmostra();
-        // public function setAmostra($amostraColetada);
-        // public function getAnalistaResponsavel();
-        // public function setAnalistaResponsavel();
-        // public function getSupervisorResponsavel();
-        // public function setSupervisorResponsavel();
-        // public function getJustificativaNovaSolicitacao();        
-        // public function setJustificativaNovaSolicitacao();        
+    include_once(dirname(__DIR__, 1).'/Database.class.php');  
     Class FuncionarioDAO {
-        public $cpf;
-        public $nome;
-        public $tipoFuncionario;
+        private $cpf;
+        private $nome;
+        private $tipoFuncionario;
 
         function __construct() {
             $this->cpf = null;

@@ -2,12 +2,12 @@
 class Amostra {
     private $idAmostra;
     private $tipo;
-    private $dataDeColeta;
+    private $dataColeta;
     private $responsavel;
 
     function __construct($tipo, $dataDeColeta,$responsavel) {
         $this->tipo = $tipo;
-        $this->dataDeColeta = $dataDeColeta;
+        $this->dataColeta = $dataDeColeta;
         $this->responsavel = $responsavel;
     }
     
@@ -17,8 +17,8 @@ class Amostra {
     public function getTipo(){
         return $this->tipo;
     }
-    public function getDataDeColeta(){
-        return $this->dataDeColeta;
+    public function getDataColeta(){
+        return $this->dataColeta;
     }
     public function getResponsavel(){
         return $this->responsavel;
@@ -30,8 +30,8 @@ class Amostra {
     public function setTipo($tipo) {
         $this->tipo = $tipo;
     }
-    public function setDataDeColeta($dataDeColeta) {
-        $this->dataDeColeta = $dataDeColeta;
+    public function setDataColeta($dataDeColeta) {
+        $this->dataColeta = $dataDeColeta;
     }
 
     public function setResponsavel($responsavel) {
