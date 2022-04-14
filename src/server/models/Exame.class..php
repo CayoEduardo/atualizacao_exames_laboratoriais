@@ -8,6 +8,16 @@
     private $supervisorResponsavel;
     private $justificativaNovaSolicitacao;
 
+    function __construct($numeroExame = null,$status = null , $resultado = null, $amostra = null, $analistaResponsavel = null, $supervisorResponsavel = null,  $justificativaNovaSolicitacao = null) {
+      $this->numeroExame = $numeroExame;
+      $this->status = $status;
+      $this->resultado = $resultado;
+      $this->amostra = $amostra;
+      $this->analistaResponsavel = $analistaResponsavel;
+      $this->supervisorResponsavel = $supervisorResponsavel;
+      $this-> justificativaNovaSolicitacao =  $justificativaNovaSolicitacao;
+  }
+
     private function atualizarStatus($novoStatus) {
 
     }

@@ -4,6 +4,12 @@ class Amostra {
     private $tipo;
     private $dataDeColeta;
     private $responsavel;
+
+    function __construct($tipo, $dataDeColeta,$responsavel) {
+        $this->tipo = $tipo;
+        $this->dataDeColeta = $dataDeColeta;
+        $this->responsavel = $responsavel;
+    }
     
     public function getIdAmostra(){
         return $this->idAmostra;

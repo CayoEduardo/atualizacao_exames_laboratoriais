@@ -4,10 +4,10 @@
       private $token;
       private $tipoFuncionario;
 
-      function __construct() {
-        $this->cpf = null;
-        $this->nome = null;
-        $this->tipoFuncionario = null;
+      function __construct($cpf, $token, $tipoFuncionario) {
+        $this->cpf = $cpf;
+        $this->nome =  $token;
+        $this->tipoFuncionario = $tipoFuncionario;
     }
 
       public function getCpf() {
