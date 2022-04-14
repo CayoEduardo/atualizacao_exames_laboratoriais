@@ -18,6 +18,28 @@
       $this-> justificativaNovaSolicitacao =  $justificativaNovaSolicitacao;
   }
 
+    public function getNumeroExame(){
+      return $this->numeroExame;
+    }
+    public function getStatus(){
+      return $this->status;
+    }
+    public function getResultado(){
+      return $this->resultado;
+    }
+    public function getAmostra(){
+      return $this->amostra;
+    }
+    public function getAnalista(){
+      return $this->analistaResponsavel;
+    }
+    public function getSupervisor(){
+      return $this->supervisorResponsavel;
+    }
+    public function getJustificativa(){
+      return $this->justificativaNovaSolicitacao;
+    }
+
     private function atualizarStatus($novoStatus) {
 
     }
