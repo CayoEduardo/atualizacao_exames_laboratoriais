@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if(empty($idExame) || empty($tipo) || empty($dataDeColeta) || empty($cpfResponsavel)) return;
 
-  include_once(__DIR__.'/controllers/AmostraController.class.php');
+  include_once(dirname(__DIR__, 1).'/controllers/AmostraController.class.php');
 
   $controller = new AmostraController();
   $controller->cadastraAmostra($idExame,$tipo,$dataDeColeta->format('Y-m-d h:i:s'),$cpfResponsavel);

@@ -1,5 +1,5 @@
 <?php
-    include_once(dirname(__DIR__, 1).'/controllers/AmostraController.class.php');
+    include_once(dirname(__DIR__, 1).'\controllers\AmostraController.class.php');
 
     $controller = new AmostraController();
     $amostras = $controller->listarAmostras();
@@ -21,7 +21,7 @@
         <main>
           <div class="table_header">
             <h3>Lista de Amostras</h3>
-            <a class="link_amostras" href="/url/src/server/cadastro_amostra.php">Adicionar amostra</a>
+            <a class="link_amostras" href="./cadastro_amostra.php">Adicionar amostra</a>
           </div>
           <table>
             <tr>
