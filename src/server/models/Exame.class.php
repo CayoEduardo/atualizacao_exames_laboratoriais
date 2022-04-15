@@ -68,7 +68,10 @@
 
     }
 
-    public function solicitarNovaColeta($justificativa) {
+    public function solicitarNovaColeta($justificativa, $funcionario) {
+      $this->adicionarJustificativa($justificativa);
+      $this->atualizarSupervisor($funcionario);
+      $this->atualizarStatus('NOVA COLETA SOLICITADA');
        
     }
   }
