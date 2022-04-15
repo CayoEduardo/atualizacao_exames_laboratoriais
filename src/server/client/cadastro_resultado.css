@@ -46,6 +46,9 @@ input {
 
 textarea {
   width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 4rem;
   padding: 0.8rem;
   margin-block: 0.4rem;
 }
