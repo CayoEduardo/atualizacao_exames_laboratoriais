@@ -6,9 +6,9 @@
       private $token;
       private $tipoFuncionario;
 
-      function __construct($cpf=null, $token=null, $tipoFuncionario=null) {
+      function __construct($cpf=null, $nome=null, $tipoFuncionario=null) {
         $this->cpf = $cpf;
-        $this->nome =  $token;
+        $this->nome =  $nome;
         $this->tipoFuncionario = $tipoFuncionario;
     }
 
@@ -16,8 +16,8 @@
           return $this->cpf;
       }     
 
-      public function getToken() {
-          return $this->token;
+      public function getNome() {
+          return $this->nome;
       }
       public function getTipoFuncionario() {
           return $this->tipoFuncionario;
@@ -27,8 +27,8 @@
           $this->cpf = $cpf;
       }      
       
-      public function setToken($token){
-          $this->token = $token;
+      public function setNome($nome){
+          $this->nome = $nome;
       }      
       
       public function setTipoFuncionario($tipoFuncionario){

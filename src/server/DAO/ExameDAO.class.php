@@ -53,6 +53,26 @@
             $stmt->execute();
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
+                foreach($result as $row) {
+                    $idAmostra = $row->getAmostra();
+                    if($idAmostra !== NULL) {
+                        $amostraDAO = new AmostraDAO();
+                        $modelAmostra = $amostraDAO->getById($idAmostra);
+                        $row->setAmostra($modelAmostra);
+                     }
+                    $cpfAnalista = $row->getAnalista();
+                    if($cpfAnalista !== NULL) {
+                        $analistaDAO = new FuncionarioDAO();
+                        $modelAnalista = $analistaDAO->getById($cpfAnalista);
+                        $row->atualizarAnalista($modelAnalista);
+                    }
+                    $cpfSupervisor = $row->getSupervisor();
+                    if($cpfSupervisor !== NULL) {
+                        $supervisorDAO = new FuncionarioDAO();
+                        $modelSupervisor = $supervisorDAO->getById($cpfSupervisor);
+                        $row->atualizarSupervisor($modelSupervisor);
+                    }
+                }
                 return $result;
             }
             return false;
