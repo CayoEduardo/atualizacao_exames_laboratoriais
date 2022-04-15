@@ -41,23 +41,23 @@
     }
 
     private function atualizarStatus($novoStatus) {
-
+      $this->status = $novoStatus;
     }
 
     private function atualizarAnalista($analista) {
-
+      $this->analistaResponsavel = $analista;
     }
 
     private function atualizarSupervisor($supervisor) {
-
+      $this->supervisorResponsavel = $supervisor;
     }
 
     private function adicionarJustificativa($justificativa) {
-
+      $this->justificativaNovaSolicitacao = $justificativa;
     }
 
     public function inserirResultado($resultado) {
-
+      $this->resultado = $resultado;
     }
 
     public function adicionarAmostra($amostraColetada) {
@@ -65,6 +65,7 @@
     }
 
     public function validarExame() {
+      $this->atualizarStatus('LIBERADO');
 
     }
 
