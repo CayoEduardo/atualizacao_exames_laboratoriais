@@ -48,15 +48,15 @@
       $this->status = $novoStatus;
     }
 
-    private function atualizarAnalista($analista) {
+    public function atualizarAnalista($analista) {
       $this->cpfAnalista = $analista;
     }
 
-    private function atualizarSupervisor($supervisor) {
+    public function atualizarSupervisor($supervisor) {
       $this->cpfSupervisor = $supervisor;
     }
 
-    private function adicionarJustificativa($justificativa) {
+    public function adicionarJustificativa($justificativa) {
       $this->justificativaNovaColeta = $justificativa;
     }
 

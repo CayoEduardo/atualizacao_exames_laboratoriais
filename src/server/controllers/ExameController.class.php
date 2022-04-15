@@ -9,7 +9,8 @@
 
         public function listaExames() {
             $exameDAO = new ExameDAO();
-            return $exameDAO->getAll();
+            $listaExames = $exameDAO->getAll();
+            return $listaExames;
         }
 
         public function cadastraResultado($idExame, $resultado, $cpfAnalista){
