@@ -1,5 +1,5 @@
 <?php
-    include_once(__DIR__.'/controllers/AmostraController.class.php');
+    include_once(dirname(__DIR__, 1).'/controllers/AmostraController.class.php');
 
     $controller = new AmostraController();
     $amostras = $controller->listarAmostras();
