@@ -21,7 +21,7 @@
         <main>
           <div class="table_header">
             <h3>Lista de Amostras</h3>
-            <a class="link_amostras" href="/src/client/cadastro_amostra.html">Adicionar amostra</a>
+            <a class="link_amostras" href="/url/src/server/cadastro_amostra.php">Adicionar amostra</a>
           </div>
           <table>
             <tr>
