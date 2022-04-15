@@ -2,18 +2,15 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $idExame = $_POST['id_exame'];
-  $tipo = $_POST['tipo_amostra'];
-  $dataDeColeta = new DateTime('now');
-  // $dataDeColeta = new DateTime($_POST['data_coleta']);
+  $resultado = $_POST['resultado'];
   $cpfResponsavel = $_POST['cpf_responsavel'];
 
-  if(empty($idExame) || empty($tipo) || empty($dataDeColeta) || empty($cpfResponsavel)) return;
+  if(empty($idExame) || empty($resultado) || empty($cpfResponsavel) ) return;
 
-  include_once(dirname(__DIR__, 1).'/controllers/AmostraController.class.php');
+  include_once(dirname(__DIR__, 1).'/controllers/ExameController.class.php');
 
-  $controller = new AmostraController();
-  $controller->cadastraAmostra($idExame,$tipo,$dataDeColeta->format('Y-m-d h:i:s'),$cpfResponsavel);
-
+  $controller = new ExameController();
+  $controller->cadastraResultado($idExame,$resultado,$cpfResponsavel);
 }
 ?>
 
@@ -23,16 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="cadastro_amostra.css" />
+    <link rel="stylesheet" href="cadastro_resultado.css" />
     <title>Cadastrar Amostra</title>
   </head>
   <body>
     <div class="wrapper">
       <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-        <h3>Cadastrar Amostra</h3>
+        <h3>Cadastrar Resultado</h3>
         <input placeholder="Id Exame" name='id_exame'/>
-        <input placeholder="Tipo de amostra" name='tipo_amostra'/>
-        <input placeholder="Data da coleta" name='data_coleta' />
+        <textarea placeholder="Resultado" name='resultado' rows="4" ></textarea>
         <input placeholder="Cpf responsável" name='cpf_responsavel'/>
         <button>Cadastrar</button>
       </form>
