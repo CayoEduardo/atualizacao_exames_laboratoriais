@@ -56,25 +56,38 @@
       $this->justificativaNovaSolicitacao = $justificativa;
     }
 
-    public function inserirResultado($resultado) {
-      $this->resultado = $resultado;
-    }
-
     public function adicionarAmostra($amostraColetada) {
-      $this->amostra = $amostraColetada;
+      if($this->status === 'AGUARDANDO COLETA') {
+        $this->amostra = $amostraColetada;
+        $this->atualizarStatus('EM ANALISE');
+      }
+      else return new Error("Amostra não pode ser adicionada");      
     }
 
-    public function validarExame() {
-      if($this->status === 'AGUARDANDO LAUDO')
-        return new Error("Exame não pode ser liberado");
-      else $this->atualizarStatus('LIBERADO');
+    public function inserirResultado($resultado, $analista) {
+      if($this->status === 'EM ANALISE') {
+        $this->resultado = $resultado;
+        $this->atualizarAnalista($analista);
+        $this->atualizarStatus('AGUARDANDO LAUDO');
+      }  
+      else return new Error("Exame não pode ser adicionado");
+    }  
+
+    public function validarExame($supervisor) {
+      if($this->status === 'AGUARDANDO LAUDO') {
+        $this->atualizarSupervisor($supervisor);
+        $this->atualizarStatus('LIBERADO');
+      }
+      else return new Error("Exame não pode ser liberado");
     }
 
-    public function solicitarNovaColeta($justificativa, $funcionario) {
-      $this->adicionarJustificativa($justificativa);
-      $this->atualizarSupervisor($funcionario);
-      $this->atualizarStatus('NOVA COLETA SOLICITADA');
-       
+    public function solicitarNovaColeta($justificativa, $supervisor) {
+      if($this->status === 'AGUARDANDO LAUDO') {
+        $this->adicionarJustificativa($justificativa);
+        $this->atualizarSupervisor($supervisor);
+        $this->atualizarStatus('NOVA COLETA SOLICITADA');       
+      }
+      else return new Error("Exame não pode ser liberado");
     }
   }
 ?>

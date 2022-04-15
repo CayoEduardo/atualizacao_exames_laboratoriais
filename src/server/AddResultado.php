@@ -1,11 +1,6 @@
 <?php
     include_once(__DIR__.'/controllers/ExameController.class.php');
 
-
-    $funcionario = new Funcionario("12345678911","eyazcon314sdf", "ANALISTA_CLINICO");
-    $exameDAO = new ExameDAO();
-    $exame = $exameDAO->getById(1);
     $controller = new ExameController();
-    $controller->cadastraResultado(1, "Um resultado +/-", $funcionario);
-    // var_dump($result);
+    $controller->cadastraResultado(1, '{"resultado": [{"componente": "hemacias", "valor referencial": {"masc": "5 - 0.5", "fem": "4.3 - 0.5"}, "resultadoPaciente": "4"}, {"componente": "hemoglobina", "valor referencial": {"masc": "15 - 2", "fem": "13.5 - 1.5"}, "resultadoPaciente": "6"}, {"componente": "plaquetas", "valor referencial": {"masc": "150 - 400", "fem": "150 - 400"}, "resultadoPaciente": "144"}]}', '01234567890');
 ?>
