@@ -7,6 +7,11 @@
 
     class ExameController {
 
+        public function listaExames() {
+            $exameDAO = new ExameDAO();
+            return $exameDAO->getAll();
+        }
+
         public function cadastraResultado($idExame, $resultado, $cpfAnalista){
            
            $exameDAO = new ExameDAO();
