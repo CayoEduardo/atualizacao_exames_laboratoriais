@@ -4,18 +4,18 @@
     private $status;
     private $resultado;
     private $amostra;
-    private $analistaResponsavel;
-    private $supervisorResponsavel;
-    private $justificativaNovaSolicitacao;
+    private $cpfAnalista;
+    private $cpfSupervisor;
+    private $justificativaNovaColeta;
 
-    function __construct($numeroExame = null,$status = null , $resultado = null, $amostra = null, $analistaResponsavel = null, $supervisorResponsavel = null,  $justificativaNovaSolicitacao = null) {
+    function __construct($numeroExame = null,$status = null , $resultado = null, $amostra = null, $analistaResponsavel = null, $supervisorResponsavel = null,  $justificativaNovaColeta = null) {
       $this->numeroExame = $numeroExame;
       $this->status = $status;
       $this->resultado = $resultado;
       $this->amostra = $amostra;
-      $this->analistaResponsavel = $analistaResponsavel;
-      $this->supervisorResponsavel = $supervisorResponsavel;
-      $this-> justificativaNovaSolicitacao =  $justificativaNovaSolicitacao;
+      $this->cpfAnalista = $analistaResponsavel;
+      $this->cpfSupervisor = $supervisorResponsavel;
+      $this-> justificativaNovaColeta =  $justificativaNovaColeta;
   }
 
     public function getNumeroExame(){
@@ -31,13 +31,17 @@
       return $this->amostra;
     }
     public function getAnalista(){
-      return $this->analistaResponsavel;
+      return $this->cpfAnalista;
     }
     public function getSupervisor(){
-      return $this->supervisorResponsavel;
+      return $this->cpfSupervisor;
     }
     public function getJustificativa(){
-      return $this->justificativaNovaSolicitacao;
+      return $this->justificativaNovaColeta;
+    }
+
+    public function setAmostra($amostra) {
+      $this->amostra = $amostra;
     }
 
     private function atualizarStatus($novoStatus) {
@@ -45,20 +49,20 @@
     }
 
     private function atualizarAnalista($analista) {
-      $this->analistaResponsavel = $analista;
+      $this->cpfAnalista = $analista;
     }
 
     private function atualizarSupervisor($supervisor) {
-      $this->supervisorResponsavel = $supervisor;
+      $this->cpfSupervisor = $supervisor;
     }
 
     private function adicionarJustificativa($justificativa) {
-      $this->justificativaNovaSolicitacao = $justificativa;
+      $this->justificativaNovaColeta = $justificativa;
     }
 
     public function adicionarAmostra($amostraColetada) {
       if($this->status === 'AGUARDANDO COLETA') {
-        $this->amostra = $amostraColetada;
+        $this->setAmostra($amostraColetada);
         $this->atualizarStatus('EM ANALISE');
       }
       else return new Error("Amostra não pode ser adicionada");      

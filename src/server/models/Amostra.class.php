@@ -1,41 +1,41 @@
 <?php 
 class Amostra {
     private $idAmostra;
-    private $tipo;
+    private $tipoAmostra;
     private $dataColeta;
-    private $responsavel;
+    private $cpfResponsavel;
 
-    function __construct($tipo, $dataDeColeta,$responsavel) {
-        $this->tipo = $tipo;
+    function __construct($tipo=null, $dataDeColeta=null,$responsavel=null) {
+        $this->tipoAmostra = $tipo;
         $this->dataColeta = $dataDeColeta;
-        $this->responsavel = $responsavel;
+        $this->cpfResponsavel = $responsavel;
     }
     
     public function getIdAmostra(){
         return $this->idAmostra;
     }
     public function getTipo(){
-        return $this->tipo;
+        return $this->tipoAmostra;
     }
     public function getDataColeta(){
         return $this->dataColeta;
     }
     public function getResponsavel(){
-        return $this->responsavel;
+        return $this->cpfResponsavel;
     }
 
     public function setIdAmostra($idAmostra) {
         $this->idAmostra = $idAmostra;
     }
     public function setTipo($tipo) {
-        $this->tipo = $tipo;
+        $this->tipoAmostra = $tipo;
     }
     public function setDataColeta($dataDeColeta) {
         $this->dataColeta = $dataDeColeta;
     }
 
     public function setResponsavel($responsavel) {
-        $this->responsavel = $responsavel;
+        $this->cpfResponsavel = $responsavel;
     }
 
 }

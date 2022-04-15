@@ -9,12 +9,12 @@
         }
 
         public function getById() {
-            $sql = 'SELECT * FROM funcionario';
+            $sql = 'SELECT * FROM amostra';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Amostra");
-                var_dump($result);
+                return $result[0];
                 // echo '<br><br><br>';
                 // foreach ($result as $row) {
                 //     echo 'nome: '.$row['nome'].'<br/>';

@@ -9,12 +9,11 @@
         }
 
         public function getById($searchId) {
-            $sql = 'SELECT * FROM funcinario WHERE cpf=?';
+            $sql = 'SELECT * FROM funcionario WHERE cpf=?';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$searchId]);
             if($stmt->rowCount() > 0) {
-                $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
-                var_dump($result);
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Funcionario");
                 return $result[0];
                 // echo '<br><br><br>';
                 // foreach ($result as $row) {

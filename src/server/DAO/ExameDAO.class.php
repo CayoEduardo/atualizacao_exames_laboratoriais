@@ -1,6 +1,10 @@
 <?php
     include_once(dirname(__DIR__, 1).'/Database.class.php');       
     include_once(dirname(__DIR__, 1).'/models/Exame.class.php');
+    include_once(dirname(__DIR__, 1).'/models/Amostra.class.php');
+    include_once(dirname(__DIR__, 1).'/models/Funcionario.class.php');
+    include_once(__DIR__.'/AmostraDAO.class.php');
+    include_once(__DIR__.'/FuncionarioDAO.class.php');
 
     Class ExameDAO {
         private $conn;
@@ -16,7 +20,14 @@
             $stmt->execute([$searchId]);
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
-                var_dump($result);
+                
+                $idAmostra = $result[0]->getAmostra();
+                if($idAmostra !== NULL) {
+                    $amostraDAO = new AmostraDAO();
+                    $modelAmostra = $amostraDAO->getById($idAmostra);
+                    $result[0]->setAmostra($modelAmostra);
+                }
+                // var_dump($result[0]);
                 return $result[0];
                 // echo '<br><br><br>';
                 // foreach ($result as $row) {
@@ -37,7 +48,14 @@
             
             $sql = 'UPDATE exame SET status=?, resultado=?, amostra=?, cpfAnalista=?, cpfSupervisor=?, justificativaNovaColeta=? WHERE numeroExame=?';
             $stmt = $this->conn->prepare($sql);
-            $succeeded = $stmt->execute([$exame->getStatus(), $exame->getResultado(), $exame->getAmostra()->getIdAmostra(), $exame->getAnalista(), $exame->getSupervisor(), $exame->getJustificativa(), $exame->getNumeroExame()]);
+            // echo 'Update exame com amostra null<br><br>';
+            $modelAmostra = $exame->getAmostra();
+            $idAmostraExame = $modelAmostra !== NULL ? (is_string($modelAmostra) ? $modelAmostra : $modelAmostra->getIdAmostra()) : NULL;
+            $modelAnalista = $exame->getAnalista();
+            $idAnalistaExame = $modelAnalista !== NULL ? (is_string($modelAnalista) ? $modelAnalista : $modelAnalista->getCpf()) : NULL;
+            $modelSupervisor = $exame->getSupervisor();
+            $idSupervisorExame = $modelSupervisor !== NULL ? (is_string($modelSupervisor) ? $modelSupervisor : $modelSupervisor->getCpf()) : NULL;
+            $succeeded = $stmt->execute([$exame->getStatus(), $exame->getResultado(), $idAmostraExame, $idAnalistaExame, $idSupervisorExame, $exame->getJustificativa(), $exame->getNumeroExame()]);
             if($succeeded) {
                 echo 'update com sucesso<br>';
                 // echo '<br><br><br>';

@@ -1,10 +1,12 @@
   <?php
   class Funcionario {
       private $cpf;
+      private $nome;
+      private $passwordHash;
       private $token;
       private $tipoFuncionario;
 
-      function __construct($cpf, $token, $tipoFuncionario) {
+      function __construct($cpf=null, $token=null, $tipoFuncionario=null) {
         $this->cpf = $cpf;
         $this->nome =  $token;
         $this->tipoFuncionario = $tipoFuncionario;

@@ -3,5 +3,5 @@
 
     $controller = new AmostraController();
     $dataColeta = new DateTime('now');
-    $controller->cadastraAmostra(1, 'SANGUE', $dataColeta->format('Y-m-d h:i:s'), '46879049800');
+    $controller->cadastraAmostra(5, 'SANGUE', $dataColeta->format('Y-m-d h:i:s'), '46879049800');
 ?>
