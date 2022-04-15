@@ -21,7 +21,6 @@
                     $modelAmostra = $amostraDAO->getById($idAmostra);
                     $result[0]->setAmostra($modelAmostra);
                 }
-                echo '<pre>'.var_export($result[0], true).'<pre>';
                 return $result[0];
             }
             return false;
@@ -42,7 +41,6 @@
             $idSupervisorExame = $modelSupervisor !== NULL ? (is_string($modelSupervisor) ? $modelSupervisor : $modelSupervisor->getCpf()) : NULL;
             $succeeded = $stmt->execute([$exame->getStatus(), $exame->getResultado(), $idAmostraExame, $idAnalistaExame, $idSupervisorExame, $exame->getJustificativa(), $exame->getNumeroExame()]);
             if($succeeded) {
-                echo 'update com sucesso<br>';
                 return true;
             }
             echo $stmt->errorCode();
@@ -55,7 +53,6 @@
             $stmt->execute();
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
-                echo '<pre>'.var_export($result, true).'<pre>';
                 return $result;
             }
             return false;

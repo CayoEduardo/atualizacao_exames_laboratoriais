@@ -8,7 +8,6 @@
             $stmt->execute([$searchId]);
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Funcionario");
-                echo '<pre>'.var_export($result[0], true).'<pre>';
                 return $result[0];
             }
             return false;
@@ -20,7 +19,6 @@
             $stmt->execute();
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Funcionario");
-                echo '<pre>'.var_export($result, true).'<pre>';
                 return $result;
             }
             return false;

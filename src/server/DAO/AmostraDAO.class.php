@@ -19,7 +19,6 @@
             $stmt->execute();
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Amostra");
-                echo '<pre>'.var_export($result, true).'<pre>';
                 return $result;
             }
             return false;
@@ -34,12 +33,10 @@
             $succeeded = $stmt->execute([$amostra->getTipo(), $amostra->getDataColeta(), $amostra->getResponsavel()]);
             if($succeeded) {
                 $amostra->setIdAmostra($this->conn->lastInsertId());
-                echo '<pre>'.var_export($amostra, true).'<pre>';
-                echo 'sucesso ao inserir amostra';
+                return true;
             }
-            else
-                echo $stmt->errorCode();
-            return;
+            echo $stmt->errorCode();
+            return false;
         }
 
         public function update($model) {
