@@ -65,8 +65,9 @@
     }
 
     public function validarExame() {
-      $this->atualizarStatus('LIBERADO');
-
+      if($this->status === 'AGUARDANDO LAUDO')
+        return new Error("Exame não pode ser liberado");
+      else $this->atualizarStatus('LIBERADO');
     }
 
     public function solicitarNovaColeta($justificativa, $funcionario) {

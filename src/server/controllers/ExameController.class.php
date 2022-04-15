@@ -15,13 +15,15 @@
            $exameDAO->update($exame);
         }
 
-        public function validaResultado($idExame, $funcionario){
+        public function validaResultado($idExame, $cpfSupervisor){
             
             $exameDAO = new ExameDAO();
+            $supervisorDAO = new FuncionarioDao();
 
             $exame = $exameDAO->getById($idExame);
-            $exame->validarExame($funcionario);
-            $exame->atualizarStatus('LIBERADO');
+            $supervisor = $supervisorDAO->getById($cpfSupervisor);
+            $exame->validarExame($supervisor);
+            $exame->atualizarSupervisor($supervisor);
             $exameDAO->update($exame);
         }
 
