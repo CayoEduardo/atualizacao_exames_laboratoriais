@@ -5,19 +5,13 @@
     include_once(dirname(__DIR__, 1).'/models/Funcionario.class.php');
     include_once(__DIR__.'/AmostraDAO.class.php');
     include_once(__DIR__.'/FuncionarioDAO.class.php');
+    include_once(__DIR__.'/DAO.class.php');
 
-    Class ExameDAO {
-        private $conn;
-
-        function __construct() {
-            $db = Database::getInstance();
-            $this->conn = $db->getConnection();
-        }
-        
-        public function getById($searchId) {
+    Class ExameDAO extends DAO {       
+        public function getById($id) {
             $sql = 'SELECT * FROM exame WHERE numeroExame=?';
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$searchId]);
+            $stmt->execute([$id]);
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
                 
@@ -27,19 +21,10 @@
                     $modelAmostra = $amostraDAO->getById($idAmostra);
                     $result[0]->setAmostra($modelAmostra);
                 }
-                // var_dump($result[0]);
+                echo '<pre>'.var_export($result[0], true).'<pre>';
                 return $result[0];
-                // echo '<br><br><br>';
-                // foreach ($result as $row) {
-                //     echo 'nome: '.$row['nome'].'<br/>';
-                //     echo 'cpf: '.$row['cpf'].'<br/>';
-                //     echo 'tipoFuncionario: '.$row['tipoFuncionario'].'<br/>';
-                // }
             }
-            else
-                echo 'Nenhum valor encontrado';
-
-            return;
+            return false;
         }
 
         public function update($exame) {
@@ -58,21 +43,26 @@
             $succeeded = $stmt->execute([$exame->getStatus(), $exame->getResultado(), $idAmostraExame, $idAnalistaExame, $idSupervisorExame, $exame->getJustificativa(), $exame->getNumeroExame()]);
             if($succeeded) {
                 echo 'update com sucesso<br>';
-                // echo '<br><br><br>';
-                // foreach ($result as $row) {
-                //     echo 'nome: '.$row['nome'].'<br/>';
-                //     echo 'cpf: '.$row['cpf'].'<br/>';
-                //     echo 'tipoFuncionario: '.$row['tipoFuncionario'].'<br/>';
-                // }
+                return true;
             }
-            else
-                echo $stmt->errorCode();
-
-            return;
+            echo $stmt->errorCode();
+            return false;
         }
 
+        public function getAll() {
+            $sql = 'SELECT * FROM exame';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount() > 0) {
+                $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
+                echo '<pre>'.var_export($result, true).'<pre>';
+                return $result;
+            }
+            return false;
+        }
 
-        // public function getAll();
-        // public function update();
+        public function store($amostra) {
+            throw new TypeError('Não é permitido criar um exame nesse sistema');
+        }
     }
 ?>
