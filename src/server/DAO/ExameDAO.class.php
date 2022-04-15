@@ -10,10 +10,10 @@
             $this->conn = $db->getConnection();
         }
         
-        public function getById() {
-            $sql = 'SELECT * FROM exame LIMIT 1';
+        public function getById($searchId) {
+            $sql = 'SELECT * FROM exame WHERE numeroExame=?';
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([$searchId]);
             if($stmt->rowCount() > 0) {
                 $result = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Exame");
                 var_dump($result);
