@@ -16,5 +16,12 @@
             $exame->adicionarAmostra($amostra);
             $exameDAO->update($exame);
         }
+
+        public function listarAmostras() {
+            $amostraDAO = new AmostraDAO();
+            $amostras = $amostraDAO->getAll();
+
+            return $amostras;
+        }
     }
 ?>
