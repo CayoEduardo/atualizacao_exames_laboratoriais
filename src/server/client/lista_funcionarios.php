@@ -1,3 +1,12 @@
+<?php
+    include_once(dirname(__DIR__, 1).'\controllers\FuncionarioController.class.php');
+
+    $controller = new FuncionarioController();
+    $funcionarios = $controller->listaFuncionarios();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,20 +29,13 @@
               <th>Nome</th>
               <th>Cargo</th>
             </tr>
+            <?php foreach($funcionarios as $index=>$funcionario): ?>
             <tr>
-              <td>12345678900</td>
-              <td>José</td>
-              <td>ENFERMEIRO</td>
+              <td><?=  $funcionario->getCpf()?></td>
+              <td><?= $funcionario->getNome()?></td>
+              <td><?= $funcionario->getTipoFuncionario()?></td>
             </tr>
-            <tr>
-              <td>12345678900</td>
-              <td>José</td>
-              <td>ENFERMEIRO</td>
-            </tr>
-            <tr>
-              <td>12345678900</td>
-              <td>José</td>
-              <td>ENFERMEIRO</td>
+            <?php endforeach; ?>
             </tr>
           </table>
         </main>

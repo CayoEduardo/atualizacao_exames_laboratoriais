@@ -1,6 +1,7 @@
 <?php
     include_once(dirname(__DIR__, 1).'/Database.class.php');  
     include_once(__DIR__.'/DAO.class.php');
+    include_once(dirname(__DIR__, 1).'/models/Funcionario.class.php');
     Class FuncionarioDAO extends DAO {
         public function getById($searchId) {
             $sql = 'SELECT * FROM funcionario WHERE cpf=?';

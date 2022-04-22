@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="lista_exames.css" />
-    <title>Lista de amostras</title>
+    <title>Lista de exames</title>
     <script>
       const goToCadastroJustificativa = () => {
         window.location.href="http://localhost/url/src/server/client/cadastro_justificativa.php"
