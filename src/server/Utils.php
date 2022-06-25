@@ -4,4 +4,10 @@
         json_decode($string);
         return json_last_error() === JSON_ERROR_NONE;
     }
+
+    function prepareTest($tipo){
+        $dbHelper = new DbHelper();
+        $dbHelper->resetDatabase();
+        $dbHelper->insertDataForTesting($tipo);
+    }
 ?>
